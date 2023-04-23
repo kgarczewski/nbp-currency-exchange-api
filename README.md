@@ -29,7 +29,7 @@ docker build -t currency-exchange-api .
 3. Run the Docker container:
 
 ```
-docker run -p 5000:5000 currency-exchange-api
+docker run -d -p 5000:5000 currency-exchange-api
 ```
 
 ### Usage
