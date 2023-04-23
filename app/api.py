@@ -118,8 +118,6 @@ def max_and_min_average(
             "quotations": quotations,
             "min_average": min(averages),
             "max_average": max(averages),
-            "message": "Values of min_average and max_average represent daily averages over the requested "
-            "period of N quotations.",
         }
     )
 

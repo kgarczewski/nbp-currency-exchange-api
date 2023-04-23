@@ -36,23 +36,32 @@ docker run -p 5000:5000 currency-exchange-api
 
 Once the container is running, you can make requests to the following endpoints:
 
-- `GET /average?currency=<currency_code>&start_date=<start_date>&end_date=<end_date>`: Returns the average exchange rate for a currency between two dates.
-- `GET /buy-sell?currency=<currency_code>`: Returns the buy and sell rates for a currency.
+- `GET /exchanges/<currency_code>/<date>`: Returns the average daily exchange rate for a currency.
+- `GET /buy-ask-rate/<currency_code>/<quotations>`: Returns the buy and sell rates for a currency.
+- `GET /averages/<currency_code>/<quotations>`: Returns the buy and sell rates for a currency.
 
 Replace `<currency_code>`, `<start_date>`, and `<end_date>` with the relevant values for your query.
 
+Alternatively, you can use the Swagger UI to interact with the API. To do this, open your web browser and navigate to http://localhost:5000/. This will bring up the Swagger UI where you can view and test the API endpoints.
+
 ### Examples
 
-- To get the average exchange rate for USD between January 1, 2022 and January 31, 2022:
+- To get the average GBP exchange rate for given date:
 
 ```
-http://localhost:5000/average?currency=USD&start_date=2022-01-01&end_date=2022-01-31
+curl http://localhost:5000/exchanges/GBP/2023-01-02
 ```
 
-- To get the buy and sell rates for EUR:
+- To get the major difference between the buy and ask rate for given currency code and the number of last quotations N (N <= 255):
 
 ```
-http://localhost:5000/buy-sell?currency=EUR
+curl http://localhost:5000/buy-ask-rate/GBP/10
+```
+
+- To get the max and min average exchange rate for currency code and the number of last quotations N (N <= 255):
+
+```
+curl http://localhost:5000/averages/GBP/10
 ```
 
 That's it! You should now be able to use the Currency Exchange API with Docker. Let me know if you have any questions or need further assistance.
