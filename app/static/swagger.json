@@ -21,7 +21,7 @@
     "/exchanges/{currency}/{date}": {
       "get": {
         "tags": [
-          "NBB Api"
+          "NBP Api"
         ],
         "summary": "Get the average exchange rate",
         "description": "Returns the average exchange rate for a given currency and date. The date should be in the format YYYY-MM-DD.",
@@ -75,7 +75,7 @@
     "/averages/{currency}/{quotations}": {
       "get": {
         "tags": [
-          "NBB Api"
+          "NBP Api"
         ],
         "summary": "Get the minimum and maximum average exchange rates",
         "description": "Returns the minimum and maximum average exchange rates for a given currency and number of quotations.",
@@ -134,7 +134,7 @@
     "/buy-ask-rate/{currency}/{quotations}": {
       "get": {
         "tags": [
-          "NBB Api"
+          "NBP Api"
         ],
       "summary": "Get the major difference between the buy and ask rate",
       "description": "Returns the major difference between the buy and ask rate for a given currency and number of quotations.",
