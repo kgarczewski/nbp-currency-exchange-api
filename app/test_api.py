@@ -1,11 +1,8 @@
 import pytest
 from flask_testing import TestCase
 from app.api import app
-from app.nbp import get_avg_rate
-
-currencies = ['THB', 'USD', 'AUD', 'HKD', 'CAD', 'NZD', 'SGD', 'EUR', 'HUF', 'CHF', 'GBP', 'UAH', 'JPY', 'CZK',
-                   'DKK', 'ISK', 'NOK', 'SEK', 'RON', 'BGN', 'TRY', 'ILS', 'CLP', 'PHP', 'MXN', 'ZAR', 'BRL', 'MYR',
-                   'IDR', 'INR', 'KRW', 'CNY', 'XDR']
+from app.currency_rate import get_avg_rate
+from app.utils import currencies
 
 
 class TestCurrencyExchangeAPI(TestCase):
@@ -32,7 +29,9 @@ class TestCurrencyExchangeAPI(TestCase):
         response = self.client.get(f"/exchanges/{invalid_currency}/{date}")
 
         assert response.status_code == 400
-        expected_error = f'Invalid currency {invalid_currency}, must be one of {currencies}.'
+        expected_error = (
+            f"Invalid currency {invalid_currency}, must be one of {currencies}."
+        )
         assert response.json["error"] == expected_error
 
         # Test invalid date
@@ -40,7 +39,7 @@ class TestCurrencyExchangeAPI(TestCase):
         response = self.client.get(f"/exchanges/{currency}/{invalid_date}")
 
         assert response.status_code == 400
-        assert response.json["error"] == 'Invalid date format, should be YYYY-MM-DD.'
+        assert response.json["error"] == "Invalid date format, should be YYYY-MM-DD."
 
     def test_max_and_min_average(self):
         # Test valid request
@@ -61,14 +60,17 @@ class TestCurrencyExchangeAPI(TestCase):
         response = self.client.get(f"/averages/{currency}/{invalid_quotations}")
 
         assert response.status_code == 400
-        assert response.json["error"] == 'Invalid number of quotations, should be between 1 and 255 inclusive.'
+        assert (
+            response.json["error"]
+            == "Invalid number of quotations, should be between 1 and 255 inclusive."
+        )
 
         # Test invalid currency
         invalid_currency = "invalid"
         response = self.client.get(f"/averages/{invalid_currency}/{quotations}")
 
-        assert response.status_code == 500
-        expected_error = f"Failed to retrieve data: Failed to fetch data from http://api.nbp.pl/api/exchangerates/rates/a/invalid/last/{quotations}/: 404 \ufeff404 NotFound"
+        assert response.status_code == 400
+        expected_error = f"Invalid currency {invalid_currency}, must be one of {currencies}."
         assert response.json["error"] == expected_error
 
     def test_major_difference_buy_ask(self):
@@ -88,7 +90,9 @@ class TestCurrencyExchangeAPI(TestCase):
         response = self.client.get(f"/buy-ask-rate/{invalid_currency}/{quotations}")
 
         assert response.status_code == 400
-        expected_error = f'Invalid currency {invalid_currency}, must be one of {currencies}.'
+        expected_error = (
+            f"Invalid currency {invalid_currency}, must be one of {currencies}."
+        )
         assert response.json["error"] == expected_error
 
 
