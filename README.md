@@ -14,7 +14,7 @@ To run this project, you'll need to have the following installed:
 1. Clone the repository:
 
 ```
-git clone git@github.com:kgarczewski/nbp-currency-exchange-api.git
+git clone https://github.com/kgarczewski/nbp-currency-exchange-api.git
 ```
 
 2. Build the Docker image:
