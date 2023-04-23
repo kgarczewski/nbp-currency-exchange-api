@@ -61,5 +61,3 @@ curl http://localhost:5000/buy-ask-rate/GBP/10
 ```
 curl http://localhost:5000/averages/GBP/10
 ```
-
-That's it! You should now be able to use the Currency Exchange API with Docker. Let me know if you have any questions or need further assistance.
