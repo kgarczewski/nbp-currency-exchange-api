@@ -1,5 +1,3 @@
-Sure! Here's an example of what you could include in your README.md file to help users run your project with Docker:
-
 ## Currency Exchange API
 
 This is a simple REST API built using Flask that exposes endpoints for querying average exchange rates and buy/sell rates for currencies from the Narodowy Bank Polski's public APIs.
