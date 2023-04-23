@@ -1,0 +1,195 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Exchange Rates API",
+    "description": "An API for retrieving exchange rates from the National Bank of Poland."
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/exchanges/{currency}/{date}": {
+      "get": {
+        "tags": [
+          "NBB Api"
+        ],
+        "summary": "Get the average exchange rate",
+        "description": "Returns the average exchange rate for a given currency and date. The date should be in the format YYYY-MM-DD.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "currency",
+            "in": "path",
+            "description": "The currency code (e.g. USD)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "path",
+            "description": "The date in the format YYYY-MM-DD",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "currency": {
+                  "type": "string"
+                },
+                "date": {
+                  "type": "string"
+                },
+                "average_exchange_rate": {
+                  "type": "number",
+                  "format": "float"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Exchange rate not found for the given currency and date."
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/averages/{currency}/{quotations}": {
+      "get": {
+        "tags": [
+          "NBB Api"
+        ],
+        "summary": "Get the minimum and maximum average exchange rates",
+        "description": "Returns the minimum and maximum average exchange rates for a given currency and number of quotations.",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "currency",
+            "in": "path",
+            "description": "The currency code (e.g. USD)",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "quotations",
+            "in": "path",
+            "description": "The number of quotations to use for calculating the average exchange rate",
+            "required": true,
+            "type": "integer",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "currency": {
+                  "type": "string"
+                },
+                "quotations": {
+                  "type": "integer"
+                },
+                "min_average": {
+                  "type": "number",
+                  "format": "float"
+                },
+                "max_average": {
+                  "type": "number",
+                  "format": "float"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Exchange rate not found for the given currency and quotations."
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/buy-ask-rate/{currency}/{quotations}": {
+      "get": {
+        "tags": [
+          "NBB Api"
+        ],
+      "summary": "Get the major difference between the buy and ask rate",
+      "description": "Returns the major difference between the buy and ask rate for a given currency and number of quotations.",
+      "produces": [
+        "application/json"
+      ],
+      "parameters": [
+        {
+          "name": "currency",
+          "in": "path",
+          "description": "The currency code (e.g. USD)",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "quotations",
+          "in": "path",
+          "description": "The number of quotations to use for calculating the average exchange rate",
+          "required": true,
+          "type": "integer",
+          "minimum": 1
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "currency": {
+                "type": "string"
+              },
+              "quotations": {
+                "type": "integer"
+              },
+              "min_average": {
+                "type": "number",
+                "format": "float"
+              },
+              "max_average": {
+                "type": "number",
+                "format": "float"
+              }
+            }
+          }
+        },
+        "404": {
+          "description": "Exchange rate not found for the given currency and quotations."
+        },
+        "500": {
+          "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}
+
