@@ -62,9 +62,7 @@ def get_max_buy_sell_diff(currency: str, n: int) -> float:
     response = requests.get(url)
 
     if response.status_code != 200:
-        raise Exception(
-            f"Failed to fetch data from {url}: {response.status_code}"
-        )
+        raise Exception(f"Failed to fetch data from {url}: {response.status_code}")
 
     data = response.json()
     quotations = data["rates"]
