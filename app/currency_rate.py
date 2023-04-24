@@ -10,9 +10,7 @@ def get_avg_rate(currency: str, date: str) -> float:
     response = requests.get(url)
 
     if response.status_code != 200:
-        raise Exception(
-            f"Failed to fetch data from {url}: {response.status_code} {response.text}"
-        )
+        raise Exception(f"Failed to fetch data from {url}: {response.status_code}")
 
     data = response.json()
     rates = data.get("rates", [])
@@ -33,7 +31,7 @@ def get_max_and_min_average_rate(currency: str, n: int) -> tuple:
             None,
             None,
             {
-                "error": "Invalid value for N: N must be a positive integer less than or equal to 255."
+                "error": "Invalid value for n: n must be a positive integer less than or equal to 255."
             },
         )
 
@@ -41,9 +39,7 @@ def get_max_and_min_average_rate(currency: str, n: int) -> tuple:
     response = requests.get(url)
 
     if response.status_code != 200:
-        raise Exception(
-            f"Failed to fetch data from {url}: {response.status_code} {response.text}"
-        )
+        raise Exception(f"Failed to fetch data from {url}: {response.status_code}")
 
     data = response.json()
     quotations = data["rates"]
@@ -67,7 +63,7 @@ def get_max_buy_sell_diff(currency: str, n: int) -> float:
 
     if response.status_code != 200:
         raise Exception(
-            f"Failed to fetch data from {url}: {response.status_code} {response.text}"
+            f"Failed to fetch data from {url}: {response.status_code}"
         )
 
     data = response.json()

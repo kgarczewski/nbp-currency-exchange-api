@@ -53,7 +53,6 @@ class TestCurrencyExchangeAPI(TestCase):
         assert json_data["quotations"] == quotations
         assert "min_average" in json_data
         assert "max_average" in json_data
-        assert "message" in json_data
 
         # Test invalid quotations
         invalid_quotations = 0
@@ -70,7 +69,9 @@ class TestCurrencyExchangeAPI(TestCase):
         response = self.client.get(f"/averages/{invalid_currency}/{quotations}")
 
         assert response.status_code == 400
-        expected_error = f"Invalid currency {invalid_currency}, must be one of {currencies}."
+        expected_error = (
+            f"Invalid currency {invalid_currency}, must be one of {currencies}."
+        )
         assert response.json["error"] == expected_error
 
     def test_major_difference_buy_ask(self):

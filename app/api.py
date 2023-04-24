@@ -32,6 +32,18 @@ swagger_blueprint = get_swaggerui_blueprint(
 app.register_blueprint(swagger_blueprint, url_prefix=SWAGGER_URL)
 
 
+@app.errorhandler(404)
+def not_found(error):
+    return (
+        jsonify(
+            {
+                "error": "Incorrectly formulated enquiries. Please check your spelling and try again."
+            }
+        ),
+        404,
+    )
+
+
 @app.route("/exchanges/<string:currency>/<string:date>", methods=["GET"])
 def get_avg_exchange_rate(currency: str, date: str) -> Union[jsonify, tuple]:
     """
@@ -47,7 +59,8 @@ def get_avg_exchange_rate(currency: str, date: str) -> Union[jsonify, tuple]:
       - "date": The date that was looked up.
       - "average_exchange_rate": The average exchange rate for the given currency and date.
     - If the exchange rate is not found, returns a JSON object with an "error" key and a 404 status code.
-    - If there is a validation error with either the currency or date, returns a JSON object with an "error" key and a 400 status code.
+    - If there is a validation error with either the currency or date, returns a JSON object with an "error" key and
+    a 400 status code.
     """
     currency_error = validate_currency(currency)
     if currency_error:
@@ -88,7 +101,6 @@ def max_and_min_average(
         - 'quotations' (int): The number of quotations used to calculate the averages.
         - 'min_average' (float): The lowest daily average exchange rate.
         - 'max_average' (float): The highest daily average exchange rate.
-        - 'message' (str): A message describing what the values of min_average and max_average represent.
         If an error occurs, a Flask JSON response with an 'error' key will be returned instead.
     """
     quotations_error = validate_currency_quotes(quotations)
@@ -127,14 +139,17 @@ def major_difference_buy_ask(
     currency: str, quotations: int
 ) -> Union[jsonify, Tuple[str, int]]:
     """
-    Endpoint that returns the difference between the highest buy rate and the lowest sell rate for a given currency and number of quotations.
+    Endpoint that returns the difference between the highest buy rate and the lowest sell rate for a given currency and
+    number of quotations.
 
     Args:
         currency (str): A string representing the currency code.
         quotations (int): An integer representing the number of quotations to retrieve.
 
     Returns:
-        Union[jsonify, Tuple[str, int]]: A JSON object containing the currency code, number of quotations, and the major difference between the highest buy rate and the lowest sell rate. If there is an error, returns a tuple with a string error message and an HTTP error code.
+        Union[jsonify, Tuple[str, int]]: A JSON object containing the currency code, number of quotations, and the major
+         difference between the highest buy rate and the lowest sell rate. If there is an error, returns a tuple
+         with a string error message and an HTTP error code.
 
     Raises:
         None.

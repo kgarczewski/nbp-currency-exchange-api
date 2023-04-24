@@ -4,7 +4,7 @@ from app.utils import validate_currency, validate_date, validate_currency_quotes
 import datetime
 
 
-class TestValidateCurrency(unittest.TestCase):
+class TestInputValidations(unittest.TestCase):
     def test_valid_currencies(self):
         valid_currencies = currencies
 
