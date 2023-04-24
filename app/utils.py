@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import Union, Optional, List
+
 import requests
+import holidays
 
 
 def get_currencies() -> List[str]:
@@ -37,6 +39,10 @@ def validate_date(date_str: str) -> Optional[str]:
         return "Invalid date, should be a weekday."
     if date > datetime.today():
         return "Invalid date, should be a past date."
+    year = date.year
+    pl_holidays = holidays.Poland(years=[year])
+    if date in pl_holidays:
+        return "Invalid date, should not be a Polish holiday."
 
 
 def validate_currency_quotes(currency_quotes) -> Union[str, None]:
