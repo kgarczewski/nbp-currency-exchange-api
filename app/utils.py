@@ -29,7 +29,7 @@ def validate_currency(currency: str, currencies: List[str]) -> Union[str, None]:
 def validate_date(date_str: str) -> Optional[str]:
     """
     Validates that the input string is a valid date in the format 'YYYY-MM-DD',
-    and that it is a weekday in the past.
+    and that it is a weekday in the past, and not a Polish holiday.
     """
     try:
         date = datetime.strptime(date_str, "%Y-%m-%d")
