@@ -17,6 +17,7 @@ To run this project, you'll need to have the following installed:
 git clone https://github.com/kgarczewski/nbp-currency-exchange-api.git
 ```
 [If You don't want to use the docker go here](#alternatively)
+
 2. Build the Docker image:
 
 ```
@@ -30,6 +31,11 @@ docker build -t currency-exchange-api .
 docker run -d -p 5000:5000 currency-exchange-api
 ```
 
+4. Run the tests:
+
+```
+pytest
+```
 ### Alternatively:
 
 1. Clone the repository:
@@ -55,6 +61,12 @@ export FLASK_APP=app/api.py
 
 ```
 flask run
+```
+
+5. Run the tests:
+
+```
+pytest
 ```
 
 ### Usage
