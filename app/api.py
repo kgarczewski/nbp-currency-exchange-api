@@ -58,9 +58,7 @@ def get_avg_exchange_rate(currency: str, date: str) -> Union[jsonify, tuple]:
       - "currency": The currency code that was looked up.
       - "date": The date that was looked up.
       - "average_exchange_rate": The average exchange rate for the given currency and date.
-    - If the exchange rate is not found, returns a JSON object with an "error" key and a 404 status code.
-    - If there is a validation error with either the currency or date, returns a JSON object with an "error" key and
-    a 400 status code.
+    - If an error occurs, a Flask JSON response with an 'error' key will be returned instead.
     """
     currency_error = validate_currency(currency)
     if currency_error:
@@ -91,7 +89,7 @@ def max_and_min_average(
     """
     Returns the maximum and minimum daily average exchange rates for a given currency over a period of N quotations.
 
-    Args:
+    Parameters:
         currency (str): A string representing the currency code to retrieve the rates for.
         quotations (int): An integer representing the number of quotations to retrieve rates for.
 
@@ -142,17 +140,16 @@ def major_difference_buy_ask(
     Endpoint that returns the difference between the highest buy rate and the lowest sell rate for a given currency and
     number of quotations.
 
-    Args:
+    Parameters:
         currency (str): A string representing the currency code.
         quotations (int): An integer representing the number of quotations to retrieve.
 
     Returns:
-        Union[jsonify, Tuple[str, int]]: A JSON object containing the currency code, number of quotations, and the major
-         difference between the highest buy rate and the lowest sell rate. If there is an error, returns a tuple
-         with a string error message and an HTTP error code.
-
-    Raises:
-        None.
+        Union[jsonify, Tuple[str, int]]: A Flask JSON response containing the following keys:
+        - 'currency' (str): The currency code in uppercase.
+        - 'quotations' (int): The number of quotations used to calculate the averages.
+        - 'major_difference' (float): The major difference between the highest buy rate and the lowest sell rate.
+        - If an error occurs, a Flask JSON response with an 'error' key will be returned instead.
     """
 
     currency_error = validate_currency(currency)
