@@ -57,16 +57,16 @@ source env/bin/activate
 export FLASK_APP=app/api.py
 ```
 
-4. Run the application:
-
-```
-flask run
-```
-
-5. Run the tests:
+4. Run the tests:
 
 ```
 pytest
+```
+
+5. Run the application:
+
+```
+flask run
 ```
 
 ### Usage
