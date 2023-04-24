@@ -10,13 +10,14 @@ To run this project, you'll need to have the following installed:
 - Docker (optional) 
 
 ### Installation
+[If You have Python installed and don't want to use the docker go here](#alternatively)
 
+This method requires Docker.
 1. Clone the repository:
 
 ```
 git clone https://github.com/kgarczewski/nbp-currency-exchange-api.git
 ```
-[If You don't want to use the docker go here](#alternatively)
 
 2. Build the Docker image:
 
@@ -34,11 +35,11 @@ docker run -d -p 5000:5000 --name currency-exchange-api currency-exchange-api
 4. Run the tests:
 
 ```
-docker exec -it currency-exchange-api
-pytest tests
+sudo docker exec -it currency-exchange-api pytest tests
 ```
 
 ### Alternatively:
+This method requires Python and pip to be installed on your machine.
 
 1. Clone the repository:
 
