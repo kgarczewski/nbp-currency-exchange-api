@@ -30,6 +30,33 @@ docker build -t currency-exchange-api .
 docker run -d -p 5000:5000 currency-exchange-api
 ```
 
+Alternatively, you can run the application without Docker by following these steps:
+
+1. Clone the repository:
+
+```
+git clone https://github.com/kgarczewski/nbp-currency-exchange-api.git
+```
+
+2. Activate the virtual environment:
+
+```
+cd nbp-currency-exchange-api
+source env/bin/activate
+```
+
+3. Set the FLASK_APP environment variable:
+
+```
+export FLASK_APP=app/api.py
+```
+
+4. Run the application:
+
+```
+flask run
+```
+
 ### Usage
 
 Once the container is running, you can make requests to the following endpoints:
