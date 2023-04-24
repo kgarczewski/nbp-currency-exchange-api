@@ -1,8 +1,7 @@
 import pytest
 from flask_testing import TestCase
-from app.api import app
+from app.api import app, currencies
 from app.currency_rate import get_avg_rate
-from app.utils import currencies
 
 
 class TestCurrencyExchangeAPI(TestCase):

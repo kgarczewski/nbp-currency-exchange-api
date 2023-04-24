@@ -6,10 +6,24 @@ from app.currency_rate import (
     get_max_buy_sell_diff,
     get_max_and_min_average_rate,
 )
-from app.utils import validate_date, validate_currency, validate_currency_quotes
+from app.utils import (
+    validate_date,
+    validate_currency,
+    validate_currency_quotes,
+    get_currencies,
+)
 from typing import Union, Tuple
 
 app = Flask(__name__)
+
+"""
+Set the global currencies variable to the list of valid currencies.
+This function is called only once at the start of the app to reduce the costs of API requests, as currencies are 
+not frequently updated.
+Updating currencies only once at the start is enough to ensure that they are up-to-date for the duration of the app.
+"""
+currencies = get_currencies()
+
 CORS(app)
 
 
@@ -60,7 +74,7 @@ def get_avg_exchange_rate(currency: str, date: str) -> Union[jsonify, tuple]:
       - "average_exchange_rate": The average exchange rate for the given currency and date.
     - If an error occurs, a Flask JSON response with an 'error' key will be returned instead.
     """
-    currency_error = validate_currency(currency)
+    currency_error = validate_currency(currency, currencies)
     if currency_error:
         return jsonify({"error": currency_error}), 400
 
@@ -104,7 +118,7 @@ def max_and_min_average(
     quotations_error = validate_currency_quotes(quotations)
     if quotations_error:
         return jsonify({"error": quotations_error}), 400
-    currency_error = validate_currency(currency)
+    currency_error = validate_currency(currency, currencies)
     if currency_error:
         return jsonify({"error": currency_error}), 400
     try:
@@ -152,7 +166,7 @@ def major_difference_buy_ask(
         - If an error occurs, a Flask JSON response with an 'error' key will be returned instead.
     """
 
-    currency_error = validate_currency(currency)
+    currency_error = validate_currency(currency, currencies)
     if currency_error:
         return jsonify({"error": currency_error}), 400
     quotations_error = validate_currency_quotes(quotations)

@@ -1,6 +1,7 @@
 import random
 import unittest
-from app.utils import validate_currency, validate_date, validate_currency_quotes, currencies
+from app.utils import validate_currency, validate_date, validate_currency_quotes
+from app.api import currencies
 import datetime
 
 
@@ -9,20 +10,20 @@ class TestInputValidations(unittest.TestCase):
         valid_currencies = currencies
 
         for currency in valid_currencies:
-            result = validate_currency(currency)
+            result = validate_currency(currency, currencies)
             self.assertIsNone(result)
 
     def test_invalid_currencies(self):
         invalid_currencies = ["INVALID", "abc", "123"]
 
         for currency in invalid_currencies:
-            result = validate_currency(currency)
+            result = validate_currency(currency, currencies)
             self.assertIsNotNone(result)
             self.assertIn(currency, result)
 
     def test_case_insensitive(self):
         valid_currency = "usd"
-        result = validate_currency(valid_currency)
+        result = validate_currency(valid_currency, currencies)
         self.assertIsNone(result)
 
     def test_validate_date(self):

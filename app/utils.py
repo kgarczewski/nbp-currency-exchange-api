@@ -1,44 +1,21 @@
 from datetime import datetime
-from typing import Union, Optional
-
-currencies = [
-    "THB",
-    "USD",
-    "AUD",
-    "HKD",
-    "CAD",
-    "NZD",
-    "SGD",
-    "EUR",
-    "HUF",
-    "CHF",
-    "GBP",
-    "UAH",
-    "JPY",
-    "CZK",
-    "DKK",
-    "ISK",
-    "NOK",
-    "SEK",
-    "RON",
-    "BGN",
-    "TRY",
-    "ILS",
-    "CLP",
-    "PHP",
-    "MXN",
-    "ZAR",
-    "BRL",
-    "MYR",
-    "IDR",
-    "INR",
-    "KRW",
-    "CNY",
-    "XDR",
-]
+from typing import Union, Optional, List
+import requests
 
 
-def validate_currency(currency: str) -> Union[str, None]:
+def get_currencies() -> List[str]:
+    """
+    Retrieves a list of valid currency codes from the NBP API and returns it as a List[str].
+    Returns:
+    List[str]: A list of valid currency codes retrieved from the NBP API.
+    """
+    currencies_endpoint = "http://api.nbp.pl/api/exchangerates/tables/a"
+    currencies_data = requests.get(currencies_endpoint).json()[0]["rates"]
+    currencies = [q["code"] for q in currencies_data]
+    return currencies
+
+
+def validate_currency(currency: str, currencies: List[str]) -> Union[str, None]:
     """
     Validates the given currency code.
     """
