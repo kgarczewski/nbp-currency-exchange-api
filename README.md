@@ -34,7 +34,7 @@ docker run -d -p 5000:5000 currency-exchange-api
 4. Run the tests:
 
 ```
-pytest
+pytest tests
 ```
 ### Alternatively:
 
@@ -60,7 +60,7 @@ export FLASK_APP=app/api.py
 4. Run the tests:
 
 ```
-pytest
+pytest tests
 ```
 
 5. Run the application:
