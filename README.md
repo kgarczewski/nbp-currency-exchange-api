@@ -28,12 +28,14 @@ docker build -t currency-exchange-api .
 3. Run the Docker container:
 
 ```
-docker run -d -p 5000:5000 currency-exchange-api
+docker run -d -p 5000:5000 --name currency-exchange-api currency-exchange-api
 ```
 
 4. Run the tests:
 
 ```
+docker exec -it currency-exchange-api /bin/bash
+source env/bin/activate
 pytest tests
 ```
 ### Alternatively:
@@ -44,11 +46,12 @@ pytest tests
 git clone https://github.com/kgarczewski/nbp-currency-exchange-api.git
 ```
 
-2. Activate the virtual environment:
+2. Activate the virtual environment and install the dependencies:
 
 ```
 cd nbp-currency-exchange-api
 source env/bin/activate
+Install the dependencies specified in requirements.txt using pip install -r requirements.txt
 ```
 
 3. Set the FLASK_APP environment variable:
