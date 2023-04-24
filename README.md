@@ -6,8 +6,8 @@ This is a simple REST API built using Flask that exposes endpoints for querying 
 
 To run this project, you'll need to have the following installed:
 
-- Docker
 - Git
+- Docker (optional) 
 
 ### Installation
 
@@ -16,7 +16,7 @@ To run this project, you'll need to have the following installed:
 ```
 git clone https://github.com/kgarczewski/nbp-currency-exchange-api.git
 ```
-
+[If You don't want to use the docker go here](#alternatively)
 2. Build the Docker image:
 
 ```
@@ -30,7 +30,7 @@ docker build -t currency-exchange-api .
 docker run -d -p 5000:5000 currency-exchange-api
 ```
 
-Alternatively, you can run the application without Docker by following these steps:
+### Alternatively:
 
 1. Clone the repository:
 
