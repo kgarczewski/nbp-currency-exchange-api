@@ -20,8 +20,6 @@ class TestCurrencyExchangeAPI(TestCase):
         assert json_data["currency"] == currency.upper()
         assert json_data["date"] == date
 
-        # You can either mock the `get_avg_rate` function or use a specific date
-        # with a known exchange rate for testing purposes
         assert json_data["average_exchange_rate"] == get_avg_rate(currency, date)
 
         # Test invalid currency

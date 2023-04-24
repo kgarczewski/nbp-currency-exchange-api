@@ -28,7 +28,7 @@ class TestEndpoints(unittest.TestCase):
             get_avg_rate("GBP", "9999-99-99")
 
     def test_get_max_and_min_average_rate(self):
-        # Test a valid currency and n
+        # Test a valid currency and n (quotations)
         assert get_max_and_min_average_rate("GBP", 5) == (5.2086, 5.2529)
 
         # Test an invalid currency
@@ -38,7 +38,7 @@ class TestEndpoints(unittest.TestCase):
         ):
             get_max_and_min_average_rate("ABC", 5)
 
-        # Test an invalid n
+        # Test an invalid n (quotations)
         result = get_max_and_min_average_rate("GBP", 0)
         assert result == (
             None,
@@ -49,7 +49,7 @@ class TestEndpoints(unittest.TestCase):
         )
 
     def test_get_max_buy_sell_diff(self):
-        # Test a valid currency and n
+        # Test a valid currency and n (quotations)
         assert get_max_buy_sell_diff("GBP", 5) == 0.1048
 
         # Test an invalid currency
@@ -59,7 +59,7 @@ class TestEndpoints(unittest.TestCase):
         ):
             get_max_buy_sell_diff("ABC", 5)
 
-        # Test an invalid n
+        # Test an invalid n (quotations)
         with pytest.raises(
             Exception,
             match=r"Failed to fetch data from http://api.nbp.pl/api/exchangerates/rates/c/GBP/last/0/: 404",
