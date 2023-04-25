@@ -33,7 +33,7 @@ docker run -d -p 5000:5000 --name currency-exchange-api currency-exchange-api
 4. Run the tests:
 
 ```
-sudo docker exec -it currency-exchange-api pytest tests
+docker exec -it currency-exchange-api pytest tests
 ```
 
 ### Usage
