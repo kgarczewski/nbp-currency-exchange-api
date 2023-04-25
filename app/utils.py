@@ -40,6 +40,8 @@ def validate_date(date_str: str) -> Union[str, None]:
     if date > datetime.today():
         return "Invalid date, should be a past date."
     year = date.year
+    if year < 2002:
+        return "Data is only available since 2002."
     pl_holidays = holidays.Poland(years=[year])
     if date in pl_holidays:
         return "Invalid date, should not be a Polish holiday."
