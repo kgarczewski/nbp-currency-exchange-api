@@ -57,6 +57,16 @@ def not_found(error):
         404,
     )
 
+@app.errorhandler(500)
+def internal_server_error(error):
+    return (
+        jsonify(
+            {
+                "error": "No data for this request. Try again with different data."
+            }
+        ),
+        500,
+    )
 
 @app.route("/exchanges/<string:currency>/<string:date>", methods=["GET"])
 def get_avg_exchange_rate(currency: str, date: str) -> Union[jsonify, tuple]:
