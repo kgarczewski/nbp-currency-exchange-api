@@ -50,7 +50,7 @@ class TestEndpoints(unittest.TestCase):
                                   {"ask": 1.28, "bid": 1.22}, {"ask": 1.35, "bid": 1.30}]})
 
             # Test case 1: Valid inputs
-            max_difference = round(get_max_buy_sell_diff("USD", 5), 2)
+            max_difference = get_max_buy_sell_diff("USD", 5)
             self.assertEqual(max_difference, 0.06)
 
             # Test case 2: No rates found
