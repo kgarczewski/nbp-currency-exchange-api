@@ -7,12 +7,10 @@ This is a simple API built using Flask that exposes endpoints for querying avera
 To run this project, you'll need to have the following installed:
 
 - Git
-- Docker (optional) 
+- Docker
 
 ### Installation
-[If You have Python installed and don't want to use the docker go here](#alternatively)
 
-This method requires Docker.
 1. Clone the repository:
 
 ```
@@ -36,45 +34,6 @@ docker run -d -p 5000:5000 --name currency-exchange-api currency-exchange-api
 
 ```
 sudo docker exec -it currency-exchange-api pytest tests
-```
-
-### Alternatively:
-This method requires Python and pip to be installed on your machine.
-
-1. Clone the repository:
-
-```
-git clone https://github.com/kgarczewski/nbp-currency-exchange-api.git
-```
-
-2. Activate the virtual environment:
-
-```
-cd nbp-currency-exchange-api
-source env/bin/activate
-```
-3. Install the dependencies:
-
-```
-pip install -r requirements.txt
-```
-
-4. Set the FLASK_APP environment variable:
-
-```
-export FLASK_APP=app/api.py
-```
-
-5. Run the tests:
-
-```
-pytest tests
-```
-
-6. Run the application:
-
-```
-flask run
 ```
 
 ### Usage
