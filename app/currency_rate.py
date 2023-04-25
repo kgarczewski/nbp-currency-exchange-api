@@ -76,4 +76,4 @@ def get_max_buy_sell_diff(currency: str, n: int) -> float:
         if difference > max_difference:
             max_difference = difference
 
-    return max_difference
+    return round(max_difference, 4) #According to the general scheme, only the 4 most significant decimal numbers are taken into account
