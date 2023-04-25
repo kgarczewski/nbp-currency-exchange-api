@@ -1,6 +1,6 @@
 ## Currency Exchange API
 
-This is a simple REST API built using Flask that exposes endpoints for querying average exchange rates and buy/sell rates for currencies from the Narodowy Bank Polski's public APIs.
+This is a simple API built using Flask that exposes endpoints for querying average exchange rates and buy/sell rates for currencies from the Narodowy Bank Polski's public APIs.
 
 ### Requirements
 

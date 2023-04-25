@@ -28,9 +28,7 @@ class TestInputValidations(unittest.TestCase):
 
     def test_validate_date(self):
         # Test valid date
-        valid_date = (datetime.datetime.today() - datetime.timedelta(days=3)).strftime(
-            "%Y-%m-%d"
-        )
+        valid_date = "2023-04-25"
         self.assertIsNone(validate_date(valid_date))
 
         # Test invalid date format
