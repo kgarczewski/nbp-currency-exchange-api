@@ -40,9 +40,9 @@ docker exec -it currency-exchange-api pytest tests
 
 Once the container is running, you can make requests to the following endpoints:
 
-- `GET /exchanges/<currency_code>/<date>`: Returns the average daily exchange rate for a currency.
-- `GET /buy-ask-rate/<currency_code>/<quotations>`: Returns the buy and sell rates for a currency.
-- `GET /averages/<currency_code>/<quotations>`: Returns the buy and sell rates for a currency.
+- `GET /exchanges/<currency_code>/<date>`: Returns the average daily exchange rate for a currency for a given date.
+- `GET /buy-ask-rate/<currency_code>/<quotations>`: Returns the buy and sell rates for a currency over a specified period of time.
+- `GET /averages/<currency_code>/<quotations>`: Returns the max and min average exchange rate for currency over a specified period of time.
 
 Replace `<currency_code>`, `<start_date>`, and `<end_date>` with the relevant values for your query.
 
