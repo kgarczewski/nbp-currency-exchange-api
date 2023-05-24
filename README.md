@@ -44,7 +44,7 @@ Once the container is running, you can make requests to the following endpoints:
 - `GET /buy-ask-rate/<currency_code>/<quotations>`: Returns the buy and sell rates for a currency over a specified period of time.
 - `GET /averages/<currency_code>/<quotations>`: Returns the max and min average exchange rate for currency over a specified period of time.
 
-Replace `<currency_code>`, `<start_date>`, and `<end_date>` with the relevant values for your query.
+Replace `<currency_code>`, `<date>`, and `<quotations>` with the relevant values for your query.
 
 Alternatively, you can use the Swagger UI to interact with the API. To do this, open your web browser and navigate to http://localhost:5000/. This will bring up the Swagger UI where you can view and test the API endpoints.
 
