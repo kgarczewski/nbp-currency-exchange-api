@@ -8,6 +8,7 @@ from app.currency_rate import (
 import pytest
 import requests_mock
 
+
 class TestEndpoints(unittest.TestCase):
     def test_get_avg_rate(self):
         # Test a valid currency and date

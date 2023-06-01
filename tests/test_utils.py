@@ -2,6 +2,7 @@ import random
 import unittest
 from app.utils import validate_currency, validate_date, validate_currency_quotes
 from app.api import currencies
+from freezegun import freeze_time
 import datetime
 
 
@@ -26,6 +27,7 @@ class TestInputValidations(unittest.TestCase):
         result = validate_currency(valid_currency, currencies)
         self.assertIsNone(result)
 
+    @freeze_time("2023-04-25")
     def test_validate_date(self):
         # Test valid date
         valid_date = "2023-04-25"
@@ -45,9 +47,7 @@ class TestInputValidations(unittest.TestCase):
         )
 
         # Test future date
-        future_date = (
-            datetime.datetime.today() + datetime.timedelta(days=10)
-        ).strftime("%Y-%m-%d")
+        future_date = "2023-06-01"
         self.assertEqual(
             validate_date(future_date), "Invalid date, should be a past date."
         )
